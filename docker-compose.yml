@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: nasomedia-main-service:${SERVICE_VERSION}
+    image: nasomedia-main-service
     build:
       context: .
       dockerfile: Dockerfile
