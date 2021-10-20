@@ -1,13 +1,9 @@
-from typing import List
-
-from sqlalchemy.orm import Session
-
 from app.crud.base import CRUDBase
-from app.models.series_genre import Tag
-from app.schemas.series_genre import TagCreate, TagUpdate
+from app.models.series_genre import SeriesGenre
+from app.schemas.series_genre import SeriesGenreCreate, SeriesGenreUpdate
 
 
-class CRUDTag(CRUDBase[Tag, TagCreate, TagUpdate]):
+class CRUDSerieGenre(CRUDBase[SeriesGenre, SeriesGenreCreate, SeriesGenreUpdate]):
     pass
 
-series_genre = CRUDTag(Tag)
+series_genre = CRUDSerieGenre(SeriesGenre)

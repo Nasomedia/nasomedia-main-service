@@ -1,13 +1,11 @@
-from typing import Generic, TypeVar, Type, Any, Optional, List, Dict, Union
+from typing import Any, List, Dict, Union
 
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
-from sqlalchemy.sql.expression import text
 
 from app.crud.base import CRUDBase
 from app.models.episode import Episode
 from app.schemas.episode import EpisodeCreate, EpisodeUpdate
-from app.schemas.sort_enum import OrderSortEnum
 
 from .utils import get_kst_now, sync_update_date
 
