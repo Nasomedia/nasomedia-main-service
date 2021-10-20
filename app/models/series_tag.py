@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
+from app.db.base import Base
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
