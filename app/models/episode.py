@@ -1,8 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Boolean
 from sqlalchemy.orm import relationship
 
-from app.db.base_class import Base
-
+from app.db.base import Base
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -16,7 +15,7 @@ class Episode(Base):
     order = Column(Integer, nullable=False, index=True)
     
     created_at = Column(DateTime(timezone=True), nullable=False)
-    updated_at = Column(DateTime(timezone=True), nullable=False)
+    updated_at = Column(DateTime(timezone=True), nullable=True)
     
     thumbnail_url = Column(String, nullable=False)
     
