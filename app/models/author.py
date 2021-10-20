@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text
 
-from app.db.base import Base
+from app.db import Base
 
 class Author(Base):
     __tablename__ = "publisher"
