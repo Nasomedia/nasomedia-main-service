@@ -1,7 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Boolean
 from sqlalchemy.orm import relationship
 
-from app.db.base import Base
+from app.db import Base
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
