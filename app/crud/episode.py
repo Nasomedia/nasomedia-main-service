@@ -4,8 +4,8 @@ from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
 from app.crud.base import CRUDBase
-from app.models.episode import Episode
-from app.schemas.episode import EpisodeCreate, EpisodeUpdate
+from app.models import Episode
+from app.schemas import EpisodeCreate, EpisodeUpdate
 
 from .utils import get_kst_now, sync_update_date
 
@@ -15,7 +15,8 @@ class CRUDEpisode(CRUDBase[Episode, EpisodeCreate, EpisodeUpdate]):
     ) -> List[Episode]:
         return db.query(self.model)\
             .filter(self.model.series_id == series_id)\
-            .order_by(self.model.order).all()
+            .order_by(self.model.order)\
+                .all()
     
     def create(
         self, 
