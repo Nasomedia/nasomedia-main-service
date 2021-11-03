@@ -6,9 +6,10 @@ from app.db import Base
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .series import Series
+from .series import Series
 
 class Episode(Base):
-    __tablename__ = "series"
+    __tablename__ = "episode"
     id = Column(Integer, primary_key=True, index=True)
 
     title = Column(String, nullable=False)

@@ -1,13 +1,12 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, Text, DateTime, Boolean
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql.expression import _True
 
 from app.db import Base
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .publisher import Publisher
-
+from .publisher import Publisher
 
 class Series(Base):
     __tablename__ = "series"
