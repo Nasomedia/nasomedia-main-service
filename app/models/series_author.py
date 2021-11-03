@@ -7,6 +7,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .series import Series
     from .author import Author
+from .series import Series
+from .author import Author
 
 class SeriesAuthor(Base):
     __tablename__ = "series_author"

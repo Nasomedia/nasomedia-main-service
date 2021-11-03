@@ -6,7 +6,9 @@ from app.db import Base
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .series import Series
-    from .author import Genre
+    from .genre import Genre
+from .series import Series
+from .genre import Genre
 
 class SeriesGenre(Base):
     __tablename__ = "series_genre"
