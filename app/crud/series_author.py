@@ -30,5 +30,15 @@ class CRUDSerieAuthor(CRUDBase[SeriesAuthor, SeriesAuthorCreate, SeriesAuthorUpd
             .filter(SeriesAuthor.series_id == series_id)\
             .all()
 
+    def delete_authors_with_series(
+        self,
+        db: Session,
+        *,
+        series_id: int,
+    ) -> List[Author]:
+        obj = db.query(self.model).filter(self.model.series_id == series_id).all()
+        db.delete(obj)
+        db.commit()
+        return obj
 
 series_author = CRUDSerieAuthor(SeriesAuthor)

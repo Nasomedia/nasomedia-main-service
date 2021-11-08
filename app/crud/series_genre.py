@@ -29,5 +29,16 @@ class CRUDSerieGenre(CRUDBase[SeriesGenre, SeriesGenreCreate, SeriesGenreUpdate]
             .join(SeriesGenre, Genre.id == SeriesGenre.genre_id)\
             .filter(SeriesGenre.series_id == series_id)\
             .all()
+    
+    def delete_genres_with_series(
+        self,
+        db: Session,
+        *,
+        series_id: int,
+    ) -> List[Genre]:
+        obj = db.query(self.model).filter(self.model.series_id == series_id).all()
+        db.delete(obj)
+        db.commit()
+        return obj
 
 series_genre = CRUDSerieGenre(SeriesGenre)
