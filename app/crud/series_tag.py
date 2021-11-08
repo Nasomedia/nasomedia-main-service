@@ -30,4 +30,16 @@ class CRUDSerieTag(CRUDBase[SeriesTag, SeriesTagCreate, SeriesTagUpdate]):
             .filter(SeriesTag.series_id == series_id)\
             .all()
 
+        
+    def delete_tags_with_series(
+        self,
+        db: Session,
+        *,
+        series_id: int,
+    ) -> List[Tag]:
+        obj = db.query(self.model).filter(self.model.series_id == series_id).all()
+        db.delete(obj)
+        db.commit()
+        return obj
+
 series_tag = CRUDSerieTag(SeriesTag)
