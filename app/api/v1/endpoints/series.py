@@ -16,8 +16,8 @@ router = APIRouter()
 
 @router.get("/{series_id}", response_model=schemas.Series)
 def read_series(
-    *,
     db: Session = Depends(deps.get_db),
+    *,
     series_id: int = Path(..., ge=1)
 ):
     series = crud.series.get(db, id=series_id)
@@ -35,8 +35,8 @@ def read_series(
 
 @router.get("", response_model=List[schemas.Series])
 def read_serieses(
-    *,
     db: Session = Depends(deps.get_db),
+    *,
     sort_by: Optional[str] = Query(
         "id",
         title="시리즈 정렬 기준",
@@ -73,9 +73,9 @@ def read_serieses(
 
 @router.post("", response_model=schemas.Series)
 async def create_series(
-    *,
     db: Session = Depends(deps.get_db),
     blob_service: deps.AzureBlobService = Depends(deps.AzureBlobService),
+    *,
     series_in: schemas.SeriesCreate = Depends(schemas.SeriesCreate.as_form)
 ) -> Any:
     """
@@ -119,9 +119,9 @@ async def create_series(
 
 @router.put("/{series_id}", response_model=schemas.Series)
 async def update_series(
-    *,
     db: Session = Depends(deps.get_db),
     blob_service: deps.AzureBlobService = Depends(deps.AzureBlobService),
+    *,
     series_id: int = Path(..., ge=1),
     series_in: schemas.SeriesUpdate = Depends(schemas.SeriesUpdate.as_form)
 ):
@@ -166,8 +166,8 @@ async def update_series(
 
 @router.delete("/{series_id}", response_model=schemas.Series)
 def delete_series(
-    *,
     db: Session = Depends(deps.get_db),
+    *,
     series_id: int = Path(..., ge=1)
 ):
     series = crud.series.get(db, id=series_id)
