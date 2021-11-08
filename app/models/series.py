@@ -14,7 +14,7 @@ class Series(Base):
 
     title = Column(String, nullable=False)
     description = Column(Text, nullable=False)
-    is_complete = Column(Boolean, nullable=False)
+    is_completed = Column(Boolean, nullable=False)
     
     created_at = Column(DateTime(timezone=True), nullable=False)
     updated_at = Column(DateTime(timezone=True), nullable=True)

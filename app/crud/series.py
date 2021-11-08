@@ -9,13 +9,7 @@ from app.models.series import Series
 from app.schemas.series import SeriesCreate, SeriesUpdate
 from app.schemas.sort_enum import  SeriesSortEnum
 
-from base64 import b64decode
-from PIL import Image
-from io import BytesIO
-
 from .utils import get_kst_now, sync_update_date
-
-import base64
 
 class CRUDSeries(CRUDBase[Series, SeriesCreate, SeriesUpdate]):
     def get_multi(
@@ -37,10 +31,9 @@ class CRUDSeries(CRUDBase[Series, SeriesCreate, SeriesUpdate]):
             .order_by(text(f"{sort_by}")).all()
     
     def create(self, db: Session, *, obj_in: SeriesCreate) -> Series:
-        image_base64enc = obj_in.thumbnail_image
-        base64.b64decode(image_base64enc)
-
+        obj_in.__delattr__("thumbnail_image")
         obj_in_data = jsonable_encoder(obj_in)
+        
         db_obj = self.model(**obj_in_data)
         db_obj.created_at = get_kst_now()
         db.add(db_obj)

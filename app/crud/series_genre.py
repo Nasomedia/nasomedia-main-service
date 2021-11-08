@@ -19,7 +19,7 @@ class CRUDSerieGenre(CRUDBase[SeriesGenre, SeriesGenreCreate, SeriesGenreUpdate]
             .filter(SeriesGenre.genre_id == genre_id)\
             .all()
 
-    def get_authors_with_series(
+    def get_genres_with_series(
         self,
         db: Session,
         *,
