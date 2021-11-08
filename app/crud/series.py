@@ -31,7 +31,6 @@ class CRUDSeries(CRUDBase[Series, SeriesCreate, SeriesUpdate]):
             .order_by(text(f"{sort_by}")).all()
     
     def create(self, db: Session, *, obj_in: SeriesCreate) -> Series:
-        obj_in.__delattr__("thumbnail_image")
         obj_in_data = jsonable_encoder(obj_in)
         
         db_obj = self.model(**obj_in_data)
