@@ -14,11 +14,11 @@ class Episode(Base):
 
     title = Column(String, nullable=False)
     order = Column(Integer, nullable=False, index=True)
+    price = Column(Integer, nullable=False)
+    thumbnail_url = Column(String, nullable=False)
     
     created_at = Column(DateTime(timezone=True), nullable=False)
     updated_at = Column(DateTime(timezone=True), nullable=True)
-    
-    thumbnail_url = Column(String, nullable=False)
     
     is_book = Column(Boolean, nullable=False)
     book_id = Column(Integer, nullable=True)
