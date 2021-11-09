@@ -11,11 +11,15 @@ class CRUDGenre(CRUDBase[Genre, GenreCreate, GenreUpdate]):
         self, 
         db: Session,
         *, 
-        keyword: Optional[str] = ""
+        keyword: Optional[str] = None
     ) -> List[Genre]:
+        if keyword:
+            return db.query(self.model)\
+                .filter(Genre.name.like(f"%{keyword}%"))\
+                .order_by(Genre.name)\
+                .all()
         return db.query(self.model)\
-            .filter(Genre.name.like(f"%{keyword}%"))\
             .order_by(Genre.name)\
-            .all()
+            .all() 
 
 genre = CRUDGenre(Genre)
