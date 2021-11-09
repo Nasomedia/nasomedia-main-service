@@ -125,6 +125,9 @@ async def update_series(
     series_id: int = Path(..., ge=1),
     series_in: schemas.SeriesUpdate = Depends(schemas.SeriesUpdate.as_form)
 ):
+    """
+    Update series
+    """
     # 해당 id의 시리즈 수집
     series = crud.series.get(db, id=series_id)
     if not series:
