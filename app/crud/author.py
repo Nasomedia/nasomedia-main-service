@@ -11,10 +11,14 @@ class CRUDAuthor(CRUDBase[Author, AuthorCreate, AuthorUpdate]):
         self, 
         db: Session, 
         *, 
-        keyword: Optional[str] = "" 
+        keyword: Optional[str] = None 
     ) -> List[Author]:
+        if keyword:
+            return db.query(self.model)\
+                    .filter(Author.name.like(f"%{keyword}%"))\
+                    .order_by(Author.name)\
+                    .all()
         return db.query(self.model)\
-            .filter(Author.name.like(f"%{keyword}%"))\
             .order_by(Author.name)\
             .all()
 
