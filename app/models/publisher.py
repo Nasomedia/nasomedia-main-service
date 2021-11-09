@@ -8,5 +8,5 @@ class Publisher(Base):
 
     name = Column(String, nullable=False)
     description = Column(String, nullable=True)
-    profile_url = Column(String, nullable=True)
+    # profile_url = Column(String, nullable=True)
     
