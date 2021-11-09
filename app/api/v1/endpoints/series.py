@@ -50,7 +50,7 @@ def read_serieses(
         None,
         title="검색 키워드"
     ),
-) -> Any:
+):
     """
     Retrieve series
     """
@@ -77,7 +77,7 @@ async def create_series(
     blob_service: deps.AzureBlobService = Depends(deps.AzureBlobService),
     *,
     series_in: schemas.SeriesCreate = Depends(schemas.SeriesCreate.as_form)
-) -> Any:
+):
     """
     Create new series
     """

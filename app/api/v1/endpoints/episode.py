@@ -26,7 +26,7 @@ def read_episodes(
         ...,
         title="시리즈 아이디"
     )
-) -> Any:
+)s:
     """
     Retrieve series
     """
@@ -47,7 +47,7 @@ async def create_episode(
     blob_service: deps.AzureBlobService = Depends(deps.AzureBlobService),
     *,
     episode_in: schemas.EpisodeCreate = Depends(schemas.EpisodeCreate.as_form)
-) -> Any:
+):
     """
     Create new series
     """
