@@ -11,10 +11,14 @@ class CRUDTag(CRUDBase[Tag, TagCreate, TagUpdate]):
         self, 
         db: Session,
         *, 
-        keyword: Optional[str] = ""
+        keyword: Optional[str] = None
     ) -> List[Tag]:
+        if keyword:
+            return db.query(self.model)\
+                .filter(Tag.name.like(f"%{keyword}%"))\
+                .order_by(Tag.name)\
+                .all()
         return db.query(self.model)\
-            .filter(Tag.name.like(f"%{keyword}%"))\
             .order_by(Tag.name)\
             .all()
 
