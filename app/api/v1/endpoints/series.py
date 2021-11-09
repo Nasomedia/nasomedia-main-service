@@ -104,7 +104,7 @@ async def create_series(
         delattr(series_in, "tag_id")
     
     # 시리즈 생성
-    series = crud.series.create(db=db, obj_in=series_in)
+    series = crud.series.create(db, obj_in=series_in)
     series_data = jsonable_encoder(series)
     
     # response body 생성
