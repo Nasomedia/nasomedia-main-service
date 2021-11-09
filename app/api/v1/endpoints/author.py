@@ -38,7 +38,7 @@ def create_author(
     """
     Create new author
     """
-    author = crud.author.create(db=db, obj_in=author_in)
+    author = crud.author.create(db, obj_in=author_in)
     return author
 
 
@@ -52,10 +52,10 @@ def update_author(
     """
     Update author
     """
-    author = crud.author.get(db=db, id=author_id)
+    author = crud.author.get(db, id=author_id)
     if not author:
         raise HTTPException(status_code=404, detail="Author not found")
-    author = crud.author.update(db=db, obj_in=author_in)
+    author = crud.author.update(db, db_obj=author, obj_in=author_in)
     return author
 
 
@@ -65,8 +65,8 @@ def delete_author(
     *,
     author_id: int,
 ):
-    author = crud.author.get(db=db, id=author_id)
+    author = crud.author.get(db, id=author_id)
     if not author:
         raise HTTPException(status_code=404, detail="Author not found")
-    author = crud.author.remove(db=db, id=author_id)
+    author = crud.author.delete(db, id=author_id)
     return author
