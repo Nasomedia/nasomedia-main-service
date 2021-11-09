@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     AZURE_STORAGE_ACCOUNT_NAME = os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
     BLOB_URL = f"https://{AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/{AZURE_STORAGE_CONTAINER_NAME}/"
     
+    IDENTITY_SERVICE_BASE_URL = os.getenv("IDENTITY_SERVICE_BASE_URL")
+    TOKEN_URL = os.getenv("TOKEN_URL")
+
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
     def assemble_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> Any:
         if isinstance(v, str):
