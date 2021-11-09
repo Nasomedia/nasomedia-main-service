@@ -10,7 +10,7 @@ from app.api.v1 import deps
 
 router = APIRouter()
 
-router.get("/", response_model=List[schemas.Author])
+@router.get("", response_model=List[schemas.Author])
 def read_authors(
     db: Session = Depends(deps.get_db),
     *,
@@ -29,7 +29,7 @@ def read_authors(
     return authors
 
 
-router.post("", response_model=schemas.Author)
+@router.post("", response_model=schemas.Author)
 def create_author(
     db: Session = Depends(deps.get_db),
     *,
@@ -42,7 +42,7 @@ def create_author(
     return author
 
 
-router.put("/{author_id}", response_model=schemas.Author)
+@router.put("/{author_id}", response_model=schemas.Author)
 def update_author(
     db: Session = Depends(deps.get_db),
     *,
@@ -59,7 +59,7 @@ def update_author(
     return author
 
 
-router.delete("/{author_id}", response_model=schemas.Author)
+@router.delete("/{author_id}", response_model=schemas.Author)
 def delete_author(
     db: Session = Depends(deps.get_db),
     *,
