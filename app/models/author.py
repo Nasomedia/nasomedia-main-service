@@ -8,5 +8,5 @@ class Author(Base):
 
     name = Column(String, nullable=False)
     description = Column(Text, nullable=True)
-    profile_url = Column(String, nullable=True)
+    # profile_url = Column(String, nullable=True)
     

@@ -5,8 +5,8 @@ from pydantic import BaseModel
 class AuthorBase(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
-    profile_url: Optional[str] = None
-    profile_image: Optional[str] = None
+    # profile_url: Optional[str] = None
+    # profile_image: Optional[str] = None
 
 # Properties to receive on creation
 class AuthorCreate(AuthorBase):
@@ -22,7 +22,7 @@ class AuthorInDBBase(AuthorBase):
     
     name: str
     description: str
-    profile_url: str
+    # profile_url: str
 
     class Config:
         orm_mode = True
