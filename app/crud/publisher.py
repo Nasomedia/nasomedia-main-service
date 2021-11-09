@@ -11,11 +11,15 @@ class CRUDPublisher(CRUDBase[Publisher, PublisherCreate, PublisherUpdate]):
         self, 
         db: Session, 
         *, 
-        keyword: Optional[str] = "" 
+        keyword: Optional[str] = None
     ) -> List[Publisher]:
+        if keyword:
+            return db.query(self.model)\
+                .filter(Publisher.name.like(f"%{keyword}%"))\
+                .order_by(Publisher.name)\
+                .all()
         return db.query(self.model)\
-            .filter(Publisher.name.like(f"%{keyword}%"))\
-            .order(Publisher.name)\
+            .order_by(Publisher.name)\
             .all()
 
 publisher = CRUDPublisher(Publisher)
