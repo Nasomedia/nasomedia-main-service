@@ -15,7 +15,7 @@ class CRUDAuthor(CRUDBase[Author, AuthorCreate, AuthorUpdate]):
     ) -> List[Author]:
         return db.query(self.model)\
             .filter(Author.name.like(f"%{keyword}%"))\
-            .order(Author.name)\
+            .order_by(Author.name)\
             .all()
 
 author = CRUDAuthor(Author)
