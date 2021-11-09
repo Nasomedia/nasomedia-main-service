@@ -8,3 +8,4 @@ from .series_author import SeriesAuthor, SeriesAuthorCreate, SeriesAuthorInDB, S
 from .series_genre import SeriesGenre, SeriesGenreCreate, SeriesGenreInDB, SeriesGenreUpdate
 from .series_tag import SeriesTag, SeriesTagCreate, SeriesTagInDB, SeriesTagUpdate
 from .sort_enum import OrderSortEnum, SeriesSortEnum
+from .user import User, UserCreate, UserInDB, UserUpdate
