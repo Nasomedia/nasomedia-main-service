@@ -1,6 +1,6 @@
 from typing import Any, List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, UploadzFile
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
 from fastapi.params import Query, Path
 from sqlalchemy.orm import Session
@@ -26,7 +26,7 @@ def read_episodes(
         ...,
         title="시리즈 아이디"
     )
-)s:
+):
     """
     Retrieve series
     """
