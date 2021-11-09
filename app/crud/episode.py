@@ -9,20 +9,22 @@ from app.schemas import EpisodeCreate, EpisodeUpdate
 
 from .utils import get_kst_now, sync_update_date
 
+import sqlalchemy
+
 class CRUDEpisode(CRUDBase[Episode, EpisodeCreate, EpisodeUpdate]):
-    def get_all_by_series_id(
-        self, db: Session, *, series_id: int, 
+    def get_multi_with_series(
+        self, db: Session, *, series_id: int, desc: bool = True 
     ) -> List[Episode]:
+        direction = sqlalchemy.desc if desc else sqlalchemy.asc
         return db.query(self.model)\
             .filter(self.model.series_id == series_id)\
-            .order_by(self.model.order)\
-                .all()
+            .order_by(direction(self.model.order))\
+            .all()
     
-    def create(
+    def create_with_series(
         self, 
         db: Session, 
         *, 
-        db_obj: Episode,
         obj_in: EpisodeCreate,
     ) -> Episode:
         obj_in_data = jsonable_encoder(obj_in)
@@ -32,7 +34,7 @@ class CRUDEpisode(CRUDBase[Episode, EpisodeCreate, EpisodeUpdate]):
         )
         db.add(db_obj)
         db.commit()
-        sync_update_date(db=db, now=db_obj.created_at, series_id=db_obj.id)
+        sync_update_date(db=db, now=db_obj.created_at, series_id=db_obj.series_id)
         db.refresh(db_obj)
         return db_obj
     
