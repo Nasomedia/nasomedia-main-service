@@ -45,6 +45,7 @@ def read_episodes(
 async def create_episode(
     db: Session = Depends(deps.get_db),
     blob_service: deps.AzureBlobService = Depends(deps.AzureBlobService),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     episode_in: schemas.EpisodeCreate = Depends(schemas.EpisodeCreate.as_form)
 ):
@@ -67,6 +68,7 @@ async def create_episode(
 async def update_episode(
     db: Session = Depends(deps.get_db),
     blob_service: deps.AzureBlobService = Depends(deps.AzureBlobService),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     episode_id: int = Path(..., ge=1),
     episode_in: schemas.EpisodeUpdate = Depends(schemas.EpisodeUpdate.as_form)
@@ -90,6 +92,7 @@ async def update_episode(
 @router.delete("/{episode_id}", response_model=schemas.Episode)
 def delete_episode(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     episode_id: int = Path(..., ge=1)
 ):

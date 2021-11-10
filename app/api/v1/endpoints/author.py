@@ -32,6 +32,7 @@ def read_authors(
 @router.post("", response_model=schemas.Author)
 def create_author(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     author_in: schemas.AuthorCreate
 ):
@@ -45,6 +46,7 @@ def create_author(
 @router.put("/{author_id}", response_model=schemas.Author)
 def update_author(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     author_id: int,
     author_in: schemas.AuthorUpdate
@@ -62,6 +64,7 @@ def update_author(
 @router.delete("/{author_id}", response_model=schemas.Author)
 def delete_author(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     author_id: int,
 ):

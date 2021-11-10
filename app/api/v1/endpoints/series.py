@@ -75,6 +75,7 @@ def read_serieses(
 async def create_series(
     db: Session = Depends(deps.get_db),
     blob_service: deps.AzureBlobService = Depends(deps.AzureBlobService),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     series_in: schemas.SeriesCreate = Depends(schemas.SeriesCreate.as_form)
 ):
@@ -121,6 +122,7 @@ async def create_series(
 async def update_series(
     db: Session = Depends(deps.get_db),
     blob_service: deps.AzureBlobService = Depends(deps.AzureBlobService),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     series_id: int = Path(..., ge=1),
     series_in: schemas.SeriesUpdate = Depends(schemas.SeriesUpdate.as_form)
@@ -170,6 +172,7 @@ async def update_series(
 @router.delete("/{series_id}", response_model=schemas.Series)
 def delete_series(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     series_id: int = Path(..., ge=1)
 ):

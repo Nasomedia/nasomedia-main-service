@@ -31,6 +31,7 @@ def read_genre(
 @router.post("", response_model=schemas.Genre)
 def create_genre(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     genre_in: schemas.GenreCreate
 ):
@@ -44,6 +45,7 @@ def create_genre(
 @router.put("/{genre_id}", response_model=schemas.Genre)
 def update_genre(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     genre_id: int,
     genre_in: schemas.GenreUpdate
@@ -61,6 +63,7 @@ def update_genre(
 @router.delete("/{genre_id}", response_model=schemas.Genre)
 def delete_genre(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     genre_id: int,
 ):

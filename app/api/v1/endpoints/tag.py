@@ -32,8 +32,8 @@ def read_tag(
 @router.post("", response_model=schemas.Tag)
 def create_tag(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
-    current_user=Depends(deps.get_current_user),
     tag_in: schemas.TagCreate
 ):
     """
@@ -46,6 +46,7 @@ def create_tag(
 @router.put("/{tag_id}", response_model=schemas.Tag)
 def update_tag(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     tag_id: int,
     tag_in: schemas.TagUpdate
@@ -63,6 +64,7 @@ def update_tag(
 @router.delete("/{tag_id}", response_model=schemas.Tag)
 def delete_tag(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     tag_id: int,
 ):

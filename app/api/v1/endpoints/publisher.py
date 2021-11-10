@@ -29,6 +29,7 @@ def read_publishers(
 @router.post("", response_model=schemas.Publisher)
 def create_publisher(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     publisher_in: schemas.PublisherCreate
 ):
@@ -41,6 +42,7 @@ def create_publisher(
 @router.put("/{publisher_id}")
 def update_publisher(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     publisher_id: int = Path(..., ge=1),
     publisher_in: schemas.PublisherUpdate
@@ -56,6 +58,7 @@ def update_publisher(
 @router.delete("/{publihser_id}")
 def delete_publisher(
     db: Session = Depends(deps.get_db),
+    user: schemas.User = Depends(deps.get_current_active_superuser),
     *,
     publisher_id: int = Path(..., ge=1)
 ):
