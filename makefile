@@ -1,4 +1,4 @@
-.PHONY: build, run, down, restart
+.PHONY: build, run, down, restart, db
 
 build:
 	sudo docker comopse build
@@ -10,3 +10,8 @@ down:
 
 restart:
 	sudo docker compose restart
+
+db:
+	docker run --name postgres-container -d --restart unless-stopped \
+  -p 5432:5432 -e POSTGRES_PASSWORD=postgres \
+  -v postgres-data:/var/lib/postgresql/data postgres:latest
