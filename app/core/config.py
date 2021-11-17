@@ -2,10 +2,8 @@ from pydantic import AnyHttpUrl, BaseSettings, PostgresDsn, validator
 from typing import List, Optional, Dict, Any
 
 import os
-import json
 
 from dotenv import load_dotenv
-
 load_dotenv()
 
 class Settings(BaseSettings):
@@ -20,13 +18,13 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = os.getenv("POSTGRES_DB")
     SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
 
-    AZURE_STORAGE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
-    AZURE_STORAGE_CONTAINER_NAME = os.getenv("AZURE_STORAGE_CONTAINER_NAME")
-    AZURE_STORAGE_ACCOUNT_NAME = os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
-    BLOB_URL = f"https://{AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/{AZURE_STORAGE_CONTAINER_NAME}/"
+    AZURE_STORAGE_CONNECTION_STRING: str = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+    AZURE_STORAGE_CONTAINER_NAME: str = os.getenv("AZURE_STORAGE_CONTAINER_NAME")
+    AZURE_STORAGE_ACCOUNT_NAME : str= os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
+    BLOB_URL: str = f"https://{AZURE_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/{AZURE_STORAGE_CONTAINER_NAME}/"
     
-    IDENTITY_SERVICE_BASE_URL = os.getenv("IDENTITY_SERVICE_BASE_URL")
-    TOKEN_URL = os.getenv("TOKEN_URL")
+    IDENTITY_SERVICE_BASE_URL: str = os.getenv("IDENTITY_SERVICE_BASE_URL")
+    TOKEN_URL: str = os.getenv("TOKEN_URL")
 
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
     def assemble_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> Any:
