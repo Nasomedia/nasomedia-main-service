@@ -6,13 +6,12 @@ from fastapi.params import Query, Path
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
-
-from app import crud, schemas, models
-from app.api.v1 import deps
+from app import crud, schemas, models, deps
 
 import uuid
 
 router = APIRouter()
+
 
 @router.get("", response_model=List[schemas.Episode])
 def read_episodes(
