@@ -12,9 +12,9 @@ class Settings(BaseSettings):
 
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
 
-    POSTGRES_SERVER: str = os.getenv("POSTGRES_SERVER")
     POSTGRES_USER: str = os.getenv("POSTGRES_USER")
     POSTGRES_PASSWORD: str = os.getenv("POSTGRES_PASWORD")
+    POSTGRES_SERVER: str = os.getenv("POSTGRES_SERVER")
     POSTGRES_DB: str = os.getenv("POSTGRES_DB")
     SQLALCHEMY_DATABASE_URI: Optional[PostgresDsn] = None
 
