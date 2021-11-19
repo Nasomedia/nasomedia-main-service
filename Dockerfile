@@ -15,3 +15,4 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
 COPY ./ /app/
 COPY ./app /app/app
+ENV PYTHONPATH=/app
