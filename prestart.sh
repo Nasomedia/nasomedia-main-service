@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/bash
 
 # Let the DB start
 python /app/script/backend_pre_start.py
