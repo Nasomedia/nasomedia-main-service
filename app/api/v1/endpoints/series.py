@@ -33,7 +33,7 @@ def read_series(
     return response
 
 @router.get("", response_model=List[schemas.Series])
-def read_serieses(
+def read_series_list(
     db: Session = Depends(deps.get_db),
     *,
     sort_by: Optional[str] = Query(
@@ -54,12 +54,12 @@ def read_serieses(
     Retrieve series
     """
     response : List[schemas.Series] = []
-    serieses = crud.series.get_multi(
+    series_list = crud.series.get_multi(
         db, sort_by=sort_by, keyword=keyword, desc=desc
     )
     
     # 모든 series의 출판사, 작가, 장르, 태그 정보 수집
-    for series in serieses:
+    for series in series_list:
         series_data = jsonable_encoder(series)
         publisher = crud.publisher.get(db, id=series.publisher_id)
         author = crud.series_author.get_authors_with_series(db, series_id=series.id)
