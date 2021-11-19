@@ -1,15 +1,15 @@
 .PHONY: build, run, down, restart, db
 
 build:
-	sudo docker comopse build
+	sudo docker-comopse build
 up:
-	sudo docker compose up -d --build
+	sudo docker-compose up -d --build
 
 down:
-	sudo docker compose down
+	sudo docker-compose down
 
 restart:
-	sudo docker compose restart
+	sudo docker-compose restart
 
 db:
 	docker run --name postgres-container -d --restart unless-stopped \
