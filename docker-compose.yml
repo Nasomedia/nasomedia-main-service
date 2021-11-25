@@ -4,8 +4,7 @@ services:
   app:
     image: nasomedia-main-service
     build:
-      context: .
-      dockerfile: Dockerfile
+      dockerfile: hwc9169/nasomedia-main-service:v1.0
     ports:
       - "80:80"
     env_file:
