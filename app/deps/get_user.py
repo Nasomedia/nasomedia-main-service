@@ -8,7 +8,7 @@ from app import schemas
 import aiohttp
 
 resuable_oauth2 = OAuth2PasswordBearer(
-    tokenUrl = settings.IDENTITY_SERVICE_BASE_URL+settings.TOKEN_URL
+    tokenUrl = settings.TOKEN_URL
 )
 
 
