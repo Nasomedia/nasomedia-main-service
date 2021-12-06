@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: hwc9169/nasomedia-main-service:v1.1
+    image: hwc9169/nasomedia-main-service:latest
     ports:
       - "80:80"
     env_file:
@@ -29,6 +29,8 @@ services:
       - postgres-data:/var/lib/postgresql/data
     env_file:
       - .env
+    networks:
+      internal:
     deploy:
       replicas: 1
 
@@ -38,3 +40,4 @@ volumes:
 networks:
   servicenet:
     external: true
+  internal:
