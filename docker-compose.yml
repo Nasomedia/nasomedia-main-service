@@ -1,14 +1,12 @@
 version: '3'
 
 services:
-  app:
+  main_service:
     image: hwc9169/nasomedia-main-service:latest
     ports:
       - "80:80"
     env_file:
-      - .env
-    volumes:
-      - .:/app:cached
+      - .main.env
     depends_on:
       - db
     command: >
@@ -18,26 +16,28 @@ services:
       servicenet:
         aliases:
           - main
-      internal:
+      main-internal:
     deploy:
       replicas: 1
 
-  db:
+  main_postgres:
     image: postgres:latest
     restart: unless-stopped
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - main-postgres-data:/var/lib/postgresql/data
     env_file:
-      - .env
+      - .main.env
     networks:
-      internal:
+      main-internal:
+        aliases:
+        - db
     deploy:
       replicas: 1
 
 volumes:
-  postgres-data:
+  main-postgres-data:
 
 networks:
   servicenet:
     external: true
-  internal:
+  main-internal:
