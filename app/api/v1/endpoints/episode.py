@@ -13,6 +13,26 @@ import uuid
 router = APIRouter()
 
 
+@router.get("{episode_id}", response_model=schemas.Episode)
+def read_episodes(
+    db: Session = Depends(deps.get_db),
+    *,
+    desc: Optional[bool] = Query(
+        True,
+        title="내림차순 유무"
+    ),
+    series_id: int = Query(
+        ...,
+        title="시리즈 아이디"
+    ),
+    episode_id: int
+):
+    """
+    Retrieve series
+    """
+    episode = crud.episode.get(db, id=episode_id)
+    return episode
+
 @router.get("", response_model=List[schemas.Episode])
 def read_episodes(
     db: Session = Depends(deps.get_db),
