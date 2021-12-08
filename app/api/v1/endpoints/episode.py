@@ -13,7 +13,7 @@ import uuid
 router = APIRouter()
 
 
-@router.get("{episode_id}", response_model=schemas.Episode)
+@router.get("/{episode_id}", response_model=schemas.Episode)
 def read_episodes(
     db: Session = Depends(deps.get_db),
     *,
