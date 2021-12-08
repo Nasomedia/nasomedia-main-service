@@ -17,14 +17,6 @@ router = APIRouter()
 def read_episodes(
     db: Session = Depends(deps.get_db),
     *,
-    desc: Optional[bool] = Query(
-        True,
-        title="내림차순 유무"
-    ),
-    series_id: int = Query(
-        ...,
-        title="시리즈 아이디"
-    ),
     episode_id: int
 ):
     """
