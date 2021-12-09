@@ -148,11 +148,11 @@ async def update_series(
         delattr(series_in, "author_id")
     if getattr(series_in, "genre_id", False):
         for genre_id in series_in.genre_id:
-            crud.series_genre.create(db, obj_in=schemas.SeriesAuthorCreate(series_id=series_id, genre_id=genre_id))
+            crud.series_genre.create(db, obj_in=schemas.SeriesGenreCreate(series_id=series_id, genre_id=genre_id))
         delattr(series_in, "genre_id")
     if getattr(series_in, "tag_id", False):
         for tag_id in series_in.tag_id:
-            crud.series_tag.create(db, obj_in=schemas.SeriesAuthorCreate(series_id=series_id, tag_id=tag_id))
+            crud.series_tag.create(db, obj_in=schemas.SeriesTagCreate(series_id=series_id, tag_id=tag_id))
         delattr(series_in, "tag_id")
 
     # 시리즈 업데이트
